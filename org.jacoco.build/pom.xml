@@ -18,12 +18,13 @@
   <version>0.8.9-SNAPSHOT</version>
   <packaging>pom</packaging>
 
-  <name>JaCoCo</name>
-  <description>JaCoCo - Java Code Coverage Library</description>
-  <url>http://jacoco.org</url>
-  <inceptionYear>2009</inceptionYear>
+  <name>JaCoCo.Absa</name>
+  <description>JaCoCo - Java Code Coverage Library - Absa fork with Scala method filtration</description>
+  <url>https://github.com/AbsaOSS/jacoco</url>
+  <inceptionYear>2023</inceptionYear>
   <organization>
-    <name>Mountainminds GmbH &amp; Co. KG</name>
+    <name>ABSA Group Limited</name>
+    <url>https://www.absa.africa</url>
   </organization>
   <licenses>
     <license>
@@ -35,54 +36,13 @@
 
   <developers>
     <developer>
-      <id>mtnminds</id>
-      <name>Marc R. Hoffmann</name>
-      <email>hoffmann@mountainminds.com</email>
-      <timezone>+1</timezone>
-      <roles>
-        <role>Project Lead</role>
-      </roles>
-    </developer>
-    <developer>
-      <id>brock_j</id>
-      <name>Brock Janiczak</name>
-      <email>brockj@gmail.com</email>
-      <timezone>+10</timezone>
-      <roles>
-        <role>Developer</role>
-      </roles>
-    </developer>
-    <developer>
-      <id>mandrikov</id>
-      <name>Evgeny Mandrikov</name>
-      <email>mandrikov@gmail.com</email>
-      <url>http://godin.net.ru</url>
-      <organization>SonarSource</organization>
-      <organizationUrl>http://www.sonarsource.com</organizationUrl>
-      <timezone>+3</timezone>
-      <roles>
-        <role>Build and release manager</role>
-      </roles>
-    </developer>
-    <developer>
-      <id>mfriedenhagen</id>
-      <name>Mirko Friedenhagen</name>
-      <email>mfriedenhagen@gmail.com</email>
-      <timezone>+1</timezone>
-      <roles>
-        <role>Developer</role>
-      </roles>
+      <id>miroslavpojer</id>
+      <name>Miroslav Pojer</name>
+      <email>miroslav.pojer@absa.africa</email>
+      <timezone>Europe/Prague</timezone>
+      <url>https://github.com/miroslavpojer</url>
     </developer>
   </developers>
-
-  <contributors>
-    <contributor>
-      <name>Radek Liba</name>
-    </contributor>
-    <contributor>
-      <name>Christoph Beck</name>
-    </contributor>
-  </contributors>
 
   <modules>
     <!-- Order is important: org.jacoco.agent.rt embeds into org.jacoco.agent and JaCoCo Agent used during tests -->
@@ -105,23 +65,31 @@
     <connection>scm:git:git://github.com/AbsaOSS/jacoco.git</connection>
     <developerConnection>scm:git:ssh://git@github.com:AbsaOSS/jacoco.git</developerConnection>
     <url>https://github.com/AbsaOSS/jacoco</url>
+    <tag>HEAD</tag>
   </scm>
   <issueManagement>
     <system>GitHub</system>
     <url>https://github.com/AbsaOSS/jacoco/issues</url>
   </issueManagement>
   <distributionManagement>
+    <snapshotRepository>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+    </snapshotRepository>
     <repository>
-      <id>sonatype-nexus-staging</id>
-      <name>Nexus Release Repository</name>
+      <id>ossrh</id>
       <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
     </repository>
-    <snapshotRepository>
-      <id>sonatype-nexus-snapshots</id>
-      <name>Sonatype Nexus Snapshots</name>
-      <url>${sonatypeOssDistMgmtSnapshotsUrl}</url>
-    </snapshotRepository>
   </distributionManagement>
+<!--  <repositories>-->
+<!--    <repository>-->
+<!--      <id>confluent</id>-->
+<!--      <url>https://packages.confluent.io/maven/</url>-->
+<!--      <releases>-->
+<!--        <updatePolicy>never</updatePolicy>-->
+<!--      </releases>-->
+<!--    </repository>-->
+<!--  </repositories>-->
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
