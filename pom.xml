@@ -6,6 +6,31 @@
   <version>0.8.9</version>
   <packaging>pom</packaging>
 
+  <name>JaCoCo :: Distribution</name>
+  <description>JaCoCo Standalone Distribution</description>
+  <url>https://github.com/AbsaOSS/jacoco</url>
+  <scm>
+    <connection>scm:git:git://github.com/AbsaOSS/jacoco.git</connection>
+    <developerConnection>scm:git:ssh://github.com:AbsaOSS/jacoco.git</developerConnection>
+    <url>http://github.com/AbsaOSS/jacoco/tree/master</url>
+    <tag>HEAD</tag>
+  </scm>
+  <licenses>
+    <license>
+      <name>Apache License, Version 2.0</name>
+      <url>https://www.apache.org/licenses/LICENSE-2.0</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+  <developers>
+    <developer>
+      <id>miroslavpojer</id>
+      <name>Miroslav Pojer</name>
+      <timezone>Europe/Prague</timezone>
+      <url>https://github.com/miroslavpojer</url>
+    </developer>
+  </developers>
+
   <modules>
     <module>org.jacoco.build</module>
   </modules>
