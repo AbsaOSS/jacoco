@@ -119,7 +119,6 @@ Until Scala method filtering solution will be available in official library. You
         </plugins>
     </build>
 </profile>
-
 ```
 - to activate JaCoCo report generation call `mvn clean verify -Pcode-coverage`
 
