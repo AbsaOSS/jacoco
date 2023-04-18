@@ -332,6 +332,7 @@
           <configuration>
             <quiet>true</quiet>
             <detectOfflineLinks>false</detectOfflineLinks>
+            <failOnError>false</failOnError>
           </configuration>
         </plugin>
         <plugin>
@@ -746,7 +747,7 @@
               </execution>
             </executions>
           </plugin>
-          <plugin>
+          <!-- plugin>
             <groupId>net.alchim31.maven</groupId>
             <artifactId>scala-maven-plugin</artifactId>
             <version>${scala.maven.plugin.version}</version>
@@ -758,7 +759,7 @@
                 </goals>
               </execution>
             </executions>
-          </plugin>
+          </plugin -->
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-gpg-plugin</artifactId>

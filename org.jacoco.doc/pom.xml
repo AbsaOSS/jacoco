@@ -204,31 +204,31 @@
               <dependencySourceIncludes>
                 <dependencySourceInclude>za.co.absa.jacoco:*</dependencySourceInclude>
               </dependencySourceIncludes>
-              <dependencySourceExcludes>
-                <dependencySourceExclude>za.co.absa.jacoco:*.test</dependencySourceExclude>
-              </dependencySourceExcludes>
+<!--              <dependencySourceExcludes>-->
+<!--                <dependencySourceExclude>za.co.absa.jacoco:*.test</dependencySourceExclude>-->
+<!--              </dependencySourceExcludes>-->
               <doctitle>JaCoCo ${qualified.bundle.version} API</doctitle>
               <windowtitle>JaCoCo ${qualified.bundle.version} API</windowtitle>
               <use>true</use>
               <version>false</version>
               <groups>
                 <!-- Note: using org.jacoco.core.* for packages would omit the org.jacoco.core package but using org.jacoco* will include it. -->
-                <group>
-                  <title>Bundle org.jacoco.core</title>
-                  <packages>org.jacoco.core*</packages>
-                </group>
-                <group>
-                  <title>Bundle org.jacoco.report</title>
-                  <packages>org.jacoco.report*</packages>
-                </group>
-                <group>
-                  <title>Bundle org.jacoco.agent</title>
-                  <packages>org.jacoco.agent*</packages>
-                </group>
-                <group>
-                  <title>JaCoCo Runtime</title>
-                  <packages>org.jacoco.agent.rt:com.vladium.emma.rt</packages>
-                </group>
+<!--                <group>-->
+<!--                  <title>Bundle org.jacoco.core</title>-->
+<!--                  <packages>org.jacoco.core*</packages>-->
+<!--                </group>-->
+<!--                <group>-->
+<!--                  <title>Bundle org.jacoco.report</title>-->
+<!--                  <packages>org.jacoco.report*</packages>-->
+<!--                </group>-->
+<!--                <group>-->
+<!--                  <title>Bundle org.jacoco.agent</title>-->
+<!--                  <packages>org.jacoco.agent*</packages>-->
+<!--                </group>-->
+<!--                <group>-->
+<!--                  <title>JaCoCo Runtime</title>-->
+<!--                  <packages>org.jacoco.agent.rt:com.vladium.emma.rt</packages>-->
+<!--                </group>-->
               </groups>
               <overview>javadoc/overview.html</overview>
               <stylesheetfile>javadoc/stylesheet.css</stylesheetfile>
