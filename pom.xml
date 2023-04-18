@@ -47,6 +47,45 @@
     </repository>
   </distributionManagement>
 
+  <properties>
+    <gitflow.maven.plugin.version>1.16.0</gitflow.maven.plugin.version>
+  </properties>
+
+  <build>
+    <plugins>
+
+      <plugin>
+        <groupId>com.amashchenko.maven.plugin</groupId>
+        <artifactId>gitflow-maven-plugin</artifactId>
+        <version>${gitflow.maven.plugin.version}</version>
+        <configuration>
+          <installProject>true</installProject>
+          <verbose>true</verbose>
+          <gitFlowConfig>
+            <productionBranch>master</productionBranch>
+            <developmentBranch>develop</developmentBranch>
+            <featureBranchPrefix>feature/</featureBranchPrefix>
+            <releaseBranchPrefix>release/v</releaseBranchPrefix>
+            <hotfixBranchPrefix>hotfix/</hotfixBranchPrefix>
+            <versionTagPrefix>v</versionTagPrefix>
+            <origin>origin</origin>
+          </gitFlowConfig>
+          <commitDevelopmentVersionAtStart>true</commitDevelopmentVersionAtStart>
+          <versionDigitToIncrement>1</versionDigitToIncrement>
+          <commitMessages>
+            <hotfixStartMessage>Update versions for hotfix v@{version}</hotfixStartMessage>
+            <hotfixFinishMessage>Update for next development version @{version}</hotfixFinishMessage>
+            <hotfixVersionUpdateMessage>Update to hotfix version @{version}</hotfixVersionUpdateMessage>
+            <releaseStartMessage>Update versions for release v@{version}</releaseStartMessage>
+            <releaseFinishMessage>Update for next development version @{version}</releaseFinishMessage>
+            <releaseVersionUpdateMessage>Update for next development version @{version}</releaseVersionUpdateMessage>
+          </commitMessages>
+        </configuration>
+      </plugin>
+
+    </plugins>
+  </build>
+
   <profiles>
     <profile>
       <id>public</id>
