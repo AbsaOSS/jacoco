@@ -123,6 +123,7 @@
     <!-- See http://jira.codehaus.org/browse/SONAR-2096 -->
     <sonar.java.source>1.5</sonar.java.source>
     <sonar.java.target>1.5</sonar.java.target>
+    <gitflow.maven.plugin.version>1.16.0</gitflow.maven.plugin.version>
   </properties>
 
   <dependencyManagement>
@@ -441,10 +442,50 @@
           <artifactId>spotless-maven-plugin</artifactId>
           <version>2.35.0</version>
        </plugin>
+        <plugin>
+          <groupId>com.amashchenko.maven.plugin</groupId>
+          <artifactId>gitflow-maven-plugin</artifactId>
+          <version>${gitflow.maven.plugin.version}</version>
+          <configuration>
+            <installProject>true</installProject>
+            <verbose>true</verbose>
+            <gitFlowConfig>
+              <productionBranch>master</productionBranch>
+              <developmentBranch>develop</developmentBranch>
+              <featureBranchPrefix>feature/</featureBranchPrefix>
+              <releaseBranchPrefix>release/v</releaseBranchPrefix>
+              <hotfixBranchPrefix>hotfix/</hotfixBranchPrefix>
+              <versionTagPrefix>v</versionTagPrefix>
+              <origin>origin</origin>
+            </gitFlowConfig>
+            <commitDevelopmentVersionAtStart>true</commitDevelopmentVersionAtStart>
+            <versionDigitToIncrement>1</versionDigitToIncrement>
+            <commitMessages>
+              <hotfixStartMessage>Update versions for hotfix v@{version}</hotfixStartMessage>
+              <hotfixFinishMessage>Update for next development version @{version}</hotfixFinishMessage>
+              <hotfixVersionUpdateMessage>Update to hotfix version @{version}</hotfixVersionUpdateMessage>
+              <releaseStartMessage>Update versions for release v@{version}</releaseStartMessage>
+              <releaseFinishMessage>Update for next development version @{version}</releaseFinishMessage>
+              <releaseVersionUpdateMessage>Update for next development version @{version}</releaseVersionUpdateMessage>
+            </commitMessages>
+          </configuration>
+        </plugin>
       </plugins>
     </pluginManagement>
 
     <plugins>
+      <plugin>
+        <groupId>org.sonatype.plugins</groupId>
+        <artifactId>nexus-staging-maven-plugin</artifactId>
+        <version>1.6.7</version>
+        <extensions>true</extensions>
+        <configuration>
+          <serverId>ossrh</serverId>
+          <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+          <autoReleaseAfterClose>true</autoReleaseAfterClose>
+        </configuration>
+      </plugin>
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
