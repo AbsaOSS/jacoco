@@ -68,6 +68,10 @@ Suggestion for usage:
 - Do comparison of results.
 - **If you identify missing method after filtration collect inputs and provide them to us to improved logic.**
 
+## Known issues
+- When used on project with Github Action madrapps/jacoco-report@v1.3 then overall % can be different. Detected 5% difference.
+
+
 ## How to use locally
 Until Scala method filtering solution will be available in official library. You can use this workaround.
 
