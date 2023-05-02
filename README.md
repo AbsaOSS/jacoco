@@ -83,7 +83,7 @@ Until Scala method filtering solution will be available in official library. You
 ### How to use library in maven project
 - Optional: add new version property in your `pom.xml` file
 ```
-    <jacoco.version>0.8.9-SNAPSHOT</jacoco.version>
+    <jacoco.version>0.8.10</jacoco.version>
 ```
 - add new `profile` section in your `pom.xml` file
 ```

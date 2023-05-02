@@ -3,7 +3,7 @@
 
   <groupId>za.co.absa.jacoco</groupId>
   <artifactId>root</artifactId>
-  <version>0.8.10-SNAPSHOT</version>
+  <version>0.8.10</version>
   <packaging>pom</packaging>
 
   <name>JaCoCo :: Distribution</name>
