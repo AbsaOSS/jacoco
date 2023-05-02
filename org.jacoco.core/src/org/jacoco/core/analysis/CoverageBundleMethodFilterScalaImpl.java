@@ -14,16 +14,14 @@ package org.jacoco.core.analysis;
 
 import org.jacoco.core.internal.analysis.ClassCoverageImpl;
 import org.jacoco.core.internal.analysis.PackageCoverageImpl;
+import org.jacoco.core.internal.analysis.SourceFileCoverageImpl;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -140,6 +138,13 @@ public class CoverageBundleMethodFilterScalaImpl
 									.decrement(methodCoverage);
 							((CoverageNodeImpl) bundleCoverage)
 									.decrement(methodCoverage);
+
+							for (ISourceFileCoverage sourceFileCoverage : packageCoverage.getSourceFiles()) {
+								if (sourceFileCoverage.getName().equals(classCoverage.getSourceFileName())) {
+									// found method's source file to perform decrement operation
+									((SourceFileCoverageImpl) sourceFileCoverage).decrement(methodCoverage);
+								}
+							}
 						} else {
 							System.out.printf(String.format(
 									"WARNING: Not expected duplicate method coverage '%s. %s'",

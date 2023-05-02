@@ -167,6 +167,10 @@ public class CoverageBundleMethodFilterScalaImplTest {
 
 		assertEquals(1, classCoverage.getMethods().size());
 		assertNotNull(findByName(classCoverage.getMethods(), "apply", true));
+
+		// #6 - check source file summary values
+		ISourceFileCoverage sourceFileCoverage = findByName(packageCoverage.getSourceFiles(),"SubsetConfigurationMethods.scala");
+		assertEquals(34, sourceFileCoverage.getInstructionCounter().getMissedCount());
 	}
 
 	// @Test
@@ -224,6 +228,10 @@ public class CoverageBundleMethodFilterScalaImplTest {
 		assertNotNull(
 				findByName(classCoverage.getMethods(), "replaceHome", true));
 		assertNotNull(findByName(classCoverage.getMethods(), "<init>", true));
+
+		// #3 - check source file summary values
+		ISourceFileCoverage sourceFileCoverage = findByName(packageCoverage.getSourceFiles(),"LocalFileSystemUtils.scala");
+		assertEquals(41, sourceFileCoverage.getInstructionCounter().getMissedCount());
 	}
 
 	@Test
@@ -306,6 +314,10 @@ public class CoverageBundleMethodFilterScalaImplTest {
 		assertEquals(1, classCoverage.getMethods().size());
 		// two diff signatures of apply
 		assertNotNull(findByName(classCoverage.getMethods(), "apply", true));
+
+		// #6 - check source file summary values
+		ISourceFileCoverage sourceFileCoverage = findByName(packageCoverage.getSourceFiles(),"converters.scala");
+		assertEquals(29, sourceFileCoverage.getInstructionCounter().getMissedCount());
 	}
 
 	@Test
@@ -367,6 +379,10 @@ public class CoverageBundleMethodFilterScalaImplTest {
 		assertNotNull(findMethodByDesc(classCoverage.getMethods(),
 				"(Ljava/util/UUID;JLscala/Option;)Lza/co/absa/commons/error/ErrorRef;"));
 		assertNotNull(findByName(classCoverage.getMethods(), "<init>", true));
+
+		// #3 - check source file summary values
+		ISourceFileCoverage sourceFileCoverage = findByName(packageCoverage.getSourceFiles(),"ErrorRef.scala");
+		assertEquals(35, sourceFileCoverage.getInstructionCounter().getMissedCount());
 	}
 
 	@Test
@@ -458,6 +474,10 @@ public class CoverageBundleMethodFilterScalaImplTest {
 		assertEquals(1, classCoverage.getMethods().size());
 		// two diff signatures of apply
 		assertNotNull(findByName(classCoverage.getMethods(), "apply", true));
+
+		// #6 - check source file summary values
+		ISourceFileCoverage sourceFileCoverage = findByName(packageCoverage.getSourceFiles(),"ConfigurationImplicits.scala");
+		assertEquals(1271, sourceFileCoverage.getInstructionCounter().getMissedCount());
 	}
 
 	@Test
@@ -518,6 +538,10 @@ public class CoverageBundleMethodFilterScalaImplTest {
 		assertEquals(2, classCoverage.getMethods().size());
 		assertNotNull(findByName(classCoverage.getMethods(), "apply", true));
 		assertNotNull(findByName(classCoverage.getMethods(), "<init>", true));
+
+		// #3 - check source file summary values
+		ISourceFileCoverage sourceFileCoverage = findByName(packageCoverage.getSourceFiles(),"TempFile.scala");
+		assertEquals(48, sourceFileCoverage.getInstructionCounter().getMissedCount());
 	}
 
 	@Test
@@ -564,6 +588,10 @@ public class CoverageBundleMethodFilterScalaImplTest {
 		assertNotNull(
 				findByName(classCoverage.getMethods(), "Timestamp", true));
 		assertNotNull(findByName(classCoverage.getMethods(), "<init>", true));
+
+		// #2 - check source file summary values
+		ISourceFileCoverage sourceFileCoverage = findByName(packageCoverage.getSourceFiles(),"BuildInfo.scala");
+		assertEquals(94, sourceFileCoverage.getInstructionCounter().getMissedCount());
 	}
 
 	@Test
@@ -697,6 +725,10 @@ public class CoverageBundleMethodFilterScalaImplTest {
 		classCoverage = findByName(packageCoverage.getClasses(),
 				"za/co/absa/commons/graph/GraphImplicits$DAGNodeTraversableOps$$anonfun$sortedTopologically$extension$2");
 		assertEquals(1, classCoverage.getMethods().size());
+
+		// #16 - check source file summary values
+		ISourceFileCoverage sourceFileCoverage = findByName(packageCoverage.getSourceFiles(),"GraphImplicits.scala");
+		assertEquals(131, sourceFileCoverage.getInstructionCounter().getMissedCount());
 	}
 
 	@Test
@@ -741,7 +773,11 @@ public class CoverageBundleMethodFilterScalaImplTest {
 				findByName(classCoverage.getMethods(), "EntityToJson", true));
 		assertNotNull(
 				findByName(classCoverage.getMethods(), "JsonToEntity", true));
-	}
+
+		// #2 - check source file summary values
+		ISourceFileCoverage sourceFileCoverage = findByName(packageCoverage.getSourceFiles(),"AbstractJsonSerDe.scala");
+		assertEquals(12, sourceFileCoverage.getInstructionCounter().getMissedCount());
+}
 
 	@Test
 	public void testPrivateLazyVal() {
@@ -782,6 +818,10 @@ public class CoverageBundleMethodFilterScalaImplTest {
 		assertNotNull(findByName(classCoverage.getMethods(),
 				"za$co$absa$commons$json$AbstractJsonSerDe$$parse_json4s_33",
 				true));
+
+		// #6 - check source file summary values
+		ISourceFileCoverage sourceFileCoverage = findByName(packageCoverage.getSourceFiles(),"AbstractJsonSerDe.scala");
+		assertEquals(273, sourceFileCoverage.getInstructionCounter().getMissedCount());
 	}
 
 	@Test
@@ -819,6 +859,10 @@ public class CoverageBundleMethodFilterScalaImplTest {
 		assertNotNull(
 				findByName(classCoverage.getMethods(), "asPrettyJson", true));
 		assertNotNull(findByName(classCoverage.getMethods(), "<init>", true));
+
+		// #6 - check source file summary values
+		ISourceFileCoverage sourceFileCoverage = findByName(packageCoverage.getSourceFiles(),"AbstractJsonSerDe.scala");
+		assertEquals(273, sourceFileCoverage.getInstructionCounter().getMissedCount());
 	}
 
 	@Test
@@ -892,6 +936,10 @@ public class CoverageBundleMethodFilterScalaImplTest {
 		classCoverage = findByName(packageCoverage.getClasses(),
 				"za/co/absa/commons/lang/TypeNegationConstraint$$bang$less$colon");
 		assertEquals(0, classCoverage.getMethods().size());
+
+		// #6 - check source file summary values
+		ISourceFileCoverage sourceFileCoverage = findByName(packageCoverage.getSourceFiles(),"typeConstraints.scala");
+		assertEquals(13, sourceFileCoverage.getInstructionCounter().getMissedCount());
 	}
 
 	@Test
@@ -1025,6 +1073,11 @@ public class CoverageBundleMethodFilterScalaImplTest {
 				"$anonfun$asSemVer$3", true));
 		assertNotNull(findByName(classCoverage.getMethods(),
 				"$anonfun$parseIdentifiers$1", true));
+
+		// #2 - check source file summary values
+		ISourceFileCoverage sourceFileCoverage = findByName(packageCoverage.getSourceFiles(),"SemVer20Impl.scala");
+		assertEquals(34, sourceFileCoverage.getInstructionCounter().getMissedCount());
+		assertEquals(357, sourceFileCoverage.getInstructionCounter().getCoveredCount());
 	}
 
 	@Test
@@ -1066,6 +1119,11 @@ public class CoverageBundleMethodFilterScalaImplTest {
 		assertEquals(14, classCoverage.getMethods().size());
 		assertNotNull(
 				findByName(classCoverage.getMethods(), "getOptional", true));
+
+		// #2 - check source file summary values
+		ISourceFileCoverage sourceFileCoverage = findByName(packageCoverage.getSourceFiles(),"ConfigurationImplicits.scala");
+		assertEquals(272, sourceFileCoverage.getInstructionCounter().getMissedCount());
+		assertEquals(1015, sourceFileCoverage.getInstructionCounter().getCoveredCount());
 	}
 
 	@Test
@@ -1108,6 +1166,11 @@ public class CoverageBundleMethodFilterScalaImplTest {
 				"za$co$absa$enceladus$utils$schema$SchemaUtils$$getStructInArray$1",
 				true));
 		assertNotNull(findByName(classCoverage.getMethods(), "<init>", true));
+
+		// #6 - check source file summary values
+		ISourceFileCoverage sourceFileCoverage = findByName(packageCoverage.getSourceFiles(),"SchemaUtils.scala");
+		assertEquals(232, sourceFileCoverage.getInstructionCounter().getMissedCount());
+		assertEquals(0, sourceFileCoverage.getInstructionCounter().getCoveredCount());
 	}
 
 	@Test
@@ -1149,6 +1212,16 @@ public class CoverageBundleMethodFilterScalaImplTest {
 		assertNotNull(findByName(classCoverage.getMethods(),
 				"getOptionallyRetryableException", true));
 		assertNotNull(findByName(classCoverage.getMethods(), "<init>", true));
+
+		// #2 - check source file summary values
+		ISourceFileCoverage sourceFileCoverage = findByName(packageCoverage.getSourceFiles(),"EnceladusDAO.scala");
+		assertEquals(0, sourceFileCoverage.getInstructionCounter().getMissedCount());
+		assertEquals(0, sourceFileCoverage.getInstructionCounter().getCoveredCount());
+
+		// #3 - check source file summary values
+		sourceFileCoverage = findByName(packageCoverage.getSourceFiles(),"RestApiException.scala");
+		assertEquals(219, sourceFileCoverage.getInstructionCounter().getMissedCount());
+		assertEquals(85, sourceFileCoverage.getInstructionCounter().getCoveredCount());
 	}
 
 	@Test
