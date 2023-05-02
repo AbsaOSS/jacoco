@@ -139,10 +139,14 @@ public class CoverageBundleMethodFilterScalaImpl
 							((CoverageNodeImpl) bundleCoverage)
 									.decrement(methodCoverage);
 
-							for (ISourceFileCoverage sourceFileCoverage : packageCoverage.getSourceFiles()) {
-								if (sourceFileCoverage.getName().equals(classCoverage.getSourceFileName())) {
-									// found method's source file to perform decrement operation
-									((SourceFileCoverageImpl) sourceFileCoverage).decrement(methodCoverage);
+							for (ISourceFileCoverage sourceFileCoverage : packageCoverage
+									.getSourceFiles()) {
+								if (sourceFileCoverage.getName().equals(
+										classCoverage.getSourceFileName())) {
+									// found method's source file to perform
+									// decrement operation
+									((SourceFileCoverageImpl) sourceFileCoverage)
+											.decrement(methodCoverage);
 								}
 							}
 						} else {
