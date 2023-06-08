@@ -43,6 +43,9 @@ JaCoCo report contains big amount of inherited methods which is not needed/expec
         <doScalaMethodFiltration>true</doScalaMethodFiltration>
         <doManualScalaMethodFiltration>true</doManualScalaMethodFiltration>
         <srcRootDir>src/main/scala</srcRootDir>
+        <methodExcludes>
+            <exclude>com/package/patk/Classname@methodName</exclude>
+        </methodExcludes>
     </configuration>
 </execution>
 ```
@@ -61,6 +64,7 @@ JaCoCo report contains big amount of inherited methods which is not needed/expec
 - `REMOVED_by_SKIP_CLASS_NAME_INIT_METHOD`
 - `REMOVED - not found in class file.`
 - `REMOVED - not found in classCondensate.`
+- `REMOVED_BY_MANUAL_EXCLUDE - manually defined to remove from report`
 
 #### Tips
 Implemented filtration logic does not contain all possible scala code combinations. All class elements are removed if they are not found in source files. This can lead to unexpected removes of logic.
