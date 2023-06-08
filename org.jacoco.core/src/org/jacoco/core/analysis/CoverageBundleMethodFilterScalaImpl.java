@@ -54,7 +54,7 @@ public class CoverageBundleMethodFilterScalaImpl
 	 * @return Reduced data bundle.
 	 */
 	public IBundleCoverage filterMethods(IBundleCoverage bundleCoverage,
-			File classesRootDir) {
+			File classesRootDir, List<String> methodExcludes) {
 		System.out.printf(String.format(
 				"INFO: Removing by scala src files analysis. Scala classes root dir path '%s'",
 				classesRootDir));
@@ -66,9 +66,14 @@ public class CoverageBundleMethodFilterScalaImpl
 		List<String> classFilePaths = scanClassFiles(classesRootDir);
 
 		removeByClassExistence(bundleCoverage, classFilePaths);
-		removeByMethodExistence(bundleCoverage, classFilePaths);
+		removeByMethodExistence(bundleCoverage, classFilePaths, methodExcludes);
 
 		return bundleCoverage;
+	}
+
+	public IBundleCoverage filterMethods(IBundleCoverage bundleCoverage,
+			File classesRootDir) {
+		return filterMethods(bundleCoverage, classesRootDir, new ArrayList<>());
 	}
 
 	/**
@@ -112,7 +117,8 @@ public class CoverageBundleMethodFilterScalaImpl
 	 *            List of detected class file paths.
 	 */
 	private static void removeByMethodExistence(IBundleCoverage bundleCoverage,
-			List<String> classFilePaths) {
+			List<String> classFilePaths, List<String> methodExcludes) {
+
 		for (IPackageCoverage packageCoverage : bundleCoverage.getPackages()) {
 			for (IClassCoverage classCoverage : packageCoverage.getClasses()) {
 
@@ -121,11 +127,26 @@ public class CoverageBundleMethodFilterScalaImpl
 						.getMethods()) {
 					// check if method exist in class file ==> find not existing
 					// ones to removed them from bundle
-					if (!existInSourceFileAsClassMember(
+					boolean existInSourceFileAsClassMember = existInSourceFileAsClassMember(
 							classCoverage.getSourceFileName(), classFilePaths,
 							packageCoverage.getName(), classCoverage.getName(),
-							methodCoverage.getName(),
-							methodCoverage.getDesc())) {
+							methodCoverage.getName(), methodCoverage.getDesc());
+
+					boolean existInManualMethodExcludes = methodExcludes
+							.contains(String.format("%s@%s",
+									classCoverage.getName(),
+									methodCoverage.getName()));
+
+					if (existInManualMethodExcludes)
+						System.out.printf(String.format(
+								"REMOVED_BY_MANUAL_EXCLUDE: package: %s, className: %s, methodName: %s, desc: %s\n",
+								packageCoverage.getName(),
+								classCoverage.getName(),
+								methodCoverage.getName(),
+								methodCoverage.getDesc()));
+
+					if (!existInSourceFileAsClassMember
+							|| existInManualMethodExcludes) {
 						// add method for remove to list for later removing
 						// process
 						if (!methodsToRemoveFromBundle

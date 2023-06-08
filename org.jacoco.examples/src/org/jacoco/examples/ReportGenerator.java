@@ -17,6 +17,7 @@ import java.io.IOException;
 
 import org.jacoco.core.analysis.Analyzer;
 import org.jacoco.core.analysis.CoverageBuilder;
+import org.jacoco.core.analysis.CoverageBundleMethodFilterScalaImpl;
 import org.jacoco.core.analysis.IBundleCoverage;
 import org.jacoco.core.tools.ExecFileLoader;
 import org.jacoco.report.DirectorySourceFileLocator;
@@ -75,8 +76,11 @@ public class ReportGenerator {
 		// report
 		final IBundleCoverage bundleCoverage = analyzeStructure();
 
-		createReport(bundleCoverage);
+		// expectation for test: in <source-dir>/za/... data ready
+		final IBundleCoverage bundleCoverageFiltered = new CoverageBundleMethodFilterScalaImpl()
+				.filterMethods(bundleCoverage, this.sourceDirectory);
 
+		createReport(bundleCoverageFiltered);
 	}
 
 	private void createReport(final IBundleCoverage bundleCoverage)

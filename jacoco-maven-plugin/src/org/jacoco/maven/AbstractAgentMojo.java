@@ -77,6 +77,9 @@ public abstract class AbstractAgentMojo extends AbstractJacocoMojo {
 	@Parameter
 	private List<String> excludes;
 
+	@Parameter
+	private List<String> methodExcludes;
+
 	/**
 	 * A list of class loader names, that should be excluded from execution
 	 * analysis. The list entries are separated by a colon (:) and may use
@@ -195,6 +198,10 @@ public abstract class AbstractAgentMojo extends AbstractJacocoMojo {
 		if (excludes != null && !excludes.isEmpty()) {
 			agentOptions
 					.setExcludes(StringUtils.join(excludes.iterator(), ":"));
+		}
+		if (methodExcludes != null && !methodExcludes.isEmpty()) {
+			agentOptions.setMethodExcludes(
+					StringUtils.join(methodExcludes.iterator(), ":"));
 		}
 		if (exclClassLoaders != null) {
 			agentOptions.setExclClassloader(exclClassLoaders);

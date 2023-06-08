@@ -41,6 +41,7 @@ JaCoCo report contains big amount of inherited methods which is not needed/expec
         <title>${project.name} - ${scala.version}</title>
         <doMethodFiltration>true</doMethodFiltration>
         <doScalaMethodFiltration>true</doScalaMethodFiltration>
+        <doManualScalaMethodFiltration>true</doManualScalaMethodFiltration>
         <srcRootDir>src/main/scala</srcRootDir>
     </configuration>
 </execution>
@@ -116,6 +117,10 @@ Until Scala method filtering solution will be available in official library. You
                             <title>${project.name} - ${scala.version}</title>
                             <doMethodFiltration>true</doMethodFiltration>
                             <doScalaMethodFiltration>true</doScalaMethodFiltration>
+                            <doManualScalaMethodFiltration>true</doManualScalaMethodFiltration>
+                            <methodExcludes>
+                                <exclude>com/path/ClassName@methodName</exclude>
+                            </methodExcludes>
                         </configuration>
                     </execution>
                 </executions>

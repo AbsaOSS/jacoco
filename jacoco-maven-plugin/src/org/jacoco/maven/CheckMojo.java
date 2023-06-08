@@ -142,6 +142,7 @@ public class CheckMojo extends AbstractJacocoMojo implements IViolationsOutput {
 	 */
 	@Parameter
 	private List<String> excludes;
+	private List<String> methodExcludes;
 
 	private boolean violations;
 
@@ -183,7 +184,8 @@ public class CheckMojo extends AbstractJacocoMojo implements IViolationsOutput {
 		try {
 			final IReportVisitor visitor = support.initRootVisitor();
 			support.loadExecutionData(dataFile);
-			support.processProject(visitor, getProject(), includes, excludes);
+			support.processProject(visitor, getProject(), includes, excludes,
+					methodExcludes);
 			visitor.visitEnd();
 		} catch (final IOException e) {
 			throw new MojoExecutionException(

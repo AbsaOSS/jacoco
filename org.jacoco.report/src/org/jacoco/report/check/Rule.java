@@ -27,10 +27,12 @@ public final class Rule {
 	private ElementType element;
 	private String includes;
 	private String excludes;
+	private String methodExcludes;
 	private List<Limit> limits;
 
 	private WildcardMatcher includesMatcher;
 	private WildcardMatcher excludesMatcher;
+	private WildcardMatcher methodExcludesMatcher;
 
 	/**
 	 * Creates a new Rule without limits.
@@ -40,6 +42,7 @@ public final class Rule {
 		this.limits = new ArrayList<Limit>();
 		this.setIncludes("*");
 		this.setExcludes("");
+		this.setMethodExcludes("");
 	}
 
 	/**
@@ -88,6 +91,11 @@ public final class Rule {
 	public void setExcludes(final String excludes) {
 		this.excludes = excludes;
 		this.excludesMatcher = new WildcardMatcher(excludes);
+	}
+
+	public void setMethodExcludes(final String methodExcludes) {
+		this.methodExcludes = methodExcludes;
+		this.methodExcludesMatcher = new WildcardMatcher(methodExcludes);
 	}
 
 	/**

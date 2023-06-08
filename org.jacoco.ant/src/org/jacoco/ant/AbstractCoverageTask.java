@@ -103,6 +103,10 @@ public class AbstractCoverageTask extends Task {
 		agentOptions.setExcludes(excludes);
 	}
 
+	public void setMethodExcludes(final String methodExcludes) {
+		agentOptions.setMethodExcludes(methodExcludes);
+	}
+
 	/**
 	 * List of wildcard patterns for classloaders that JaCoCo will not
 	 * instrument classes from. Default is

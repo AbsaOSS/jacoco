@@ -58,6 +58,8 @@ final class ReportSupport {
 	private final boolean doMethodFiltration;
 	private final File sourceRootDir;
 	private final boolean doMethodFiltrationScala;
+	private final boolean doManualMethodFiltrationScala;
+	private final List<String> methodExcludes;
 
 	/**
 	 * Construct a new instance with the given log output.
@@ -72,16 +74,23 @@ final class ReportSupport {
 		this.doMethodFiltration = false;
 		this.sourceRootDir = new File(".");
 		this.doMethodFiltrationScala = false;
+		this.doManualMethodFiltrationScala = false;
+		this.methodExcludes = new ArrayList<String>();
 	}
 
 	public ReportSupport(final Log log, final boolean doMethodFiltration,
-			final File sourceRootDir, final boolean doScalaMethodFiltration) {
+			final File sourceRootDir, final boolean doScalaMethodFiltration,
+			final boolean doManualScalaMethodFiltration,
+			final List<String> methodExcludes) {
 		this.log = log;
 		this.loader = new ExecFileLoader();
 		this.formatters = new ArrayList<IReportVisitor>();
 		this.doMethodFiltration = doMethodFiltration;
 		this.sourceRootDir = sourceRootDir;
 		this.doMethodFiltrationScala = doScalaMethodFiltration;
+		this.doManualMethodFiltrationScala = doManualScalaMethodFiltration;
+		System.out.println("ReportSupport::constructor - " + methodExcludes);
+		this.methodExcludes = methodExcludes;
 	}
 
 	/**
@@ -132,9 +141,10 @@ final class ReportSupport {
 	 */
 	public void processProject(final IReportGroupVisitor visitor,
 			final MavenProject project, final List<String> includes,
-			final List<String> excludes) throws IOException {
+			final List<String> excludes, final List<String> methodExcludes)
+			throws IOException {
 		processProject(visitor, project.getArtifactId(), project, includes,
-				excludes, new NoSourceLocator());
+				excludes, methodExcludes, new NoSourceLocator());
 	}
 
 	/**
@@ -159,15 +169,17 @@ final class ReportSupport {
 	public void processProject(final IReportGroupVisitor visitor,
 			final String bundleName, final MavenProject project,
 			final List<String> includes, final List<String> excludes,
-			final String srcEncoding) throws IOException {
+			final List<String> methodExcludes, final String srcEncoding)
+			throws IOException {
 		processProject(visitor, bundleName, project, includes, excludes,
-				new SourceFileCollection(project, srcEncoding));
+				methodExcludes, new SourceFileCollection(project, srcEncoding));
 	}
 
 	private void processProject(final IReportGroupVisitor visitor,
 			final String bundleName, final MavenProject project,
 			final List<String> includes, final List<String> excludes,
-			final ISourceFileLocator locator) throws IOException {
+			final List<String> methodExcludes, final ISourceFileLocator locator)
+			throws IOException {
 		final CoverageBuilder builder = new CoverageBuilder();
 		final File classesDir = new File(
 				project.getBuild().getOutputDirectory());
@@ -193,8 +205,14 @@ final class ReportSupport {
 
 			if (doMethodFiltrationScala) {
 				log.info("Scala method filter applied.");
-				bundleMethodFiltered = new CoverageBundleMethodFilterScalaImpl()
-						.filterMethods(bundle, this.sourceRootDir);
+				if (doManualMethodFiltrationScala) {
+					bundleMethodFiltered = new CoverageBundleMethodFilterScalaImpl()
+							.filterMethods(bundle, this.sourceRootDir,
+									this.methodExcludes);
+				} else
+					bundleMethodFiltered = new CoverageBundleMethodFilterScalaImpl()
+							.filterMethods(bundle, this.sourceRootDir);
+
 			} else {
 				// no method filtering - any filter logic active
 				log.info(

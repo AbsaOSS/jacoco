@@ -144,6 +144,10 @@ public class ReportAggregateMojo extends AbstractReportMojo {
 		return false;
 	}
 
+	boolean isManualScalaMethodFiltrationRequired() {
+		return false;
+	}
+
 	File getSourceRootDir() {
 		return new File(".");
 	}
@@ -166,7 +170,8 @@ public class ReportAggregateMojo extends AbstractReportMojo {
 			final IReportGroupVisitor group, final MavenProject project)
 			throws IOException {
 		support.processProject(group, project.getArtifactId(), project,
-				getIncludes(), getExcludes(), sourceEncoding);
+				getIncludes(), getExcludes(), getMethodExcludes(),
+				sourceEncoding);
 	}
 
 	public File getReportOutputDirectory() {
