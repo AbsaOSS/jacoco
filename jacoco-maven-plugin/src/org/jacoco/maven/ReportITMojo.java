@@ -79,6 +79,10 @@ public class ReportITMojo extends AbstractReportMojo {
 		return false;
 	}
 
+	boolean isManualScalaMethodFiltrationRequired() {
+		return false;
+	}
+
 	File getSourceRootDir() {
 		return new File(".");
 	}
@@ -87,7 +91,7 @@ public class ReportITMojo extends AbstractReportMojo {
 	void createReport(final IReportGroupVisitor visitor,
 			final ReportSupport support) throws IOException {
 		support.processProject(visitor, title, project, getIncludes(),
-				getExcludes(), sourceEncoding);
+				getExcludes(), getMethodExcludes(), sourceEncoding);
 	}
 
 	public File getReportOutputDirectory() {

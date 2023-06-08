@@ -66,6 +66,7 @@ public final class AgentOptions {
 	 * @see WildcardMatcher
 	 */
 	public static final String EXCLUDES = "excludes";
+	public static final String METHOD_EXCLUDES = "methodExcludes";
 
 	/**
 	 * Wildcard expression for class loaders names for classes that should be
@@ -337,6 +338,10 @@ public final class AgentOptions {
 	 */
 	public void setExcludes(final String excludes) {
 		setOption(EXCLUDES, excludes);
+	}
+
+	public void setMethodExcludes(final String methodExcludes) {
+		setOption(METHOD_EXCLUDES, methodExcludes);
 	}
 
 	/**

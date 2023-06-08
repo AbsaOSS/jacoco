@@ -65,6 +65,9 @@ public class ReportMojo extends AbstractReportMojo {
 	@Parameter(property = "do.method.filtration.scala", defaultValue = "false")
 	private Boolean doScalaMethodFiltration;
 
+	@Parameter(property = "do.manual.method.filtration.scala", defaultValue = "false")
+	private Boolean doManualScalaMethodFiltration;
+
 	@Override
 	boolean canGenerateReportRegardingDataFiles() {
 		return dataFile.exists();
@@ -78,6 +81,10 @@ public class ReportMojo extends AbstractReportMojo {
 	@Override
 	boolean isScalaMethodFiltrationRequired() {
 		return doScalaMethodFiltration;
+	}
+
+	boolean isManualScalaMethodFiltrationRequired() {
+		return doManualScalaMethodFiltration;
 	}
 
 	@Override
@@ -104,7 +111,7 @@ public class ReportMojo extends AbstractReportMojo {
 	void createReport(final IReportGroupVisitor visitor,
 			final ReportSupport support) throws IOException {
 		support.processProject(visitor, title, project, getIncludes(),
-				getExcludes(), sourceEncoding);
+				getExcludes(), getMethodExcludes(), sourceEncoding);
 	}
 
 	public File getReportOutputDirectory() {

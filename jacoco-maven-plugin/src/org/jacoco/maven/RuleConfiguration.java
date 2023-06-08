@@ -62,6 +62,11 @@ public class RuleConfiguration {
 		rule.setExcludes(StringUtils.join(excludes.iterator(), ":"));
 	}
 
+	public void setMethodExcludes(final List<String> methodExcludes) {
+		rule.setMethodExcludes(
+				StringUtils.join(methodExcludes.iterator(), ":"));
+	}
+
 	/**
 	 * @param limits
 	 *            list of {@link Limit}s configured for this rule

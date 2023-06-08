@@ -87,6 +87,12 @@ public abstract class AbstractReportMojo extends AbstractMojo
 	List<String> excludes;
 
 	/**
+	 * A list of class::method pairs to exclude from the report.
+	 */
+	@Parameter
+	List<String> methodExcludes;
+
+	/**
 	 * Flag used to suppress execution.
 	 */
 	@Parameter(property = "jacoco.skip", defaultValue = "false")
@@ -128,6 +134,15 @@ public abstract class AbstractReportMojo extends AbstractMojo
 		return excludes;
 	}
 
+	/**
+	 * Returns the list of class::method pairs to exclude from the report.
+	 *
+	 * @return class::method pairs to exclude
+	 */
+	List<String> getMethodExcludes() {
+		return methodExcludes;
+	}
+
 	public boolean canGenerateReport() {
 		if (skip) {
 			getLog().info(
@@ -156,6 +171,8 @@ public abstract class AbstractReportMojo extends AbstractMojo
 	abstract boolean canDoMethodFiltration();
 
 	abstract boolean isScalaMethodFiltrationRequired();
+
+	abstract boolean isManualScalaMethodFiltrationRequired();
 
 	abstract File getSourceRootDir();
 
@@ -195,7 +212,9 @@ public abstract class AbstractReportMojo extends AbstractMojo
 		try {
 			final ReportSupport support = new ReportSupport(getLog(),
 					canDoMethodFiltration(), getSourceRootDir(),
-					isScalaMethodFiltrationRequired());
+					isScalaMethodFiltrationRequired(),
+					isManualScalaMethodFiltrationRequired(),
+					getMethodExcludes());
 			loadExecutionData(support);
 			addFormatters(support, locale);
 			final IReportVisitor visitor = support.initRootVisitor();
